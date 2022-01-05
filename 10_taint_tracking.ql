@@ -4,7 +4,7 @@ import semmle.code.cpp.dataflow.TaintTracking
 class NetworkByteSwap extends Expr {
     NetworkByteSwap(){
       exists(MacroInvocation mi |
-        mi.getMacroName() in ["ntohl", "ntohll", "noths"]  |
+        mi.getMacroName() in ["ntohl", "ntohll", "ntohs"]  |
         this = mi.getExpr())
     }
 }
@@ -24,6 +24,6 @@ class MyConfig extends TaintTracking::Configuration {
   }
 }
 
-from MyConfig mf, DataFlow::PathNode source, DataFlow::PathNode sink
-where mf.hasFlowPath(source, sink)
+from MyConfig mf, DataFlow::Node source, DataFlow::Node sink
+where mf.hasFlow(source, sink)
 select source, sink
