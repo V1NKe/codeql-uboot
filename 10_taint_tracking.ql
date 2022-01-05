@@ -26,4 +26,4 @@ class MyConfig extends TaintTracking::Configuration {
 
 from MyConfig mf, DataFlow::Node source, DataFlow::Node sink
 where mf.hasFlow(source, sink)
-select source, sink
+select sink, source, sink
